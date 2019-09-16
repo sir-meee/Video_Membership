@@ -1,0 +1,4 @@
+error membership views: 
+context['current_membership'] = str(current_membership.membership)
+
+if user_membership.membership == selected_membership:
