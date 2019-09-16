@@ -1,0 +1,9 @@
+virtual/
+.vscode/
+videomembership/__pycache__/
+courses/__pycache__/
+courses/migrations
+membership/__pycache__/
+membership/migrations
+media
+.env

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from decouple import config,Csv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '&*nt(*8$v!g+nf#s@6&@yooe)z5m(f(i#@$&^30-jvbsx(g@-q'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -78,9 +79,11 @@ WSGI_APPLICATION = 'videomembership.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'videosubscription',
-        'USER': 'sammy',
-        'PASSWORD': 'mmysa406'
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': ''
     }
 }
 
@@ -131,10 +134,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 if DEBUG:
-    STRIPE_PUBLISHABLE_KEY = 'pk_test_v098vOYM7fuuA9c3T9vQmTmQ00r5bFdlBx'
-    STRIPE_SECRET_KEY = 'sk_test_L4RCb5EhNM7vI3iRyhPFs0w100CwI0iOn9'
+    STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
+    STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
 
 else:
     #live keys
-    STRIPE_PUBLISHABLE_KEY = 'pk_test_v098vOYM7fuuA9c3T9vQmTmQ00r5bFdlBx'
-    STRIPE_SECRET_KEY = 'sk_test_L4RCb5EhNM7vI3iRyhPFs0w100CwI0iOn9'
+    STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
+    STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
